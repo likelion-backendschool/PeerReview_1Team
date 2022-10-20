@@ -1,0 +1,11 @@
+spring:
+  jpa:
+    open-in-view: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+---
+spring:
+  profiles:
+    active: dev
