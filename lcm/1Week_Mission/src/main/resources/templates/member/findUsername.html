@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html layout:decorate="~{/layout.html}">
+
+<head>
+    <title>아이디 찾기</title>
+</head>
+
+<body>
+<main layout:fragment="main">
+    <section class="section section-login flex-grow flex flex-col items-center justify-center">
+
+        <div class="max-w-md w-full px-2 pt-4">
+            <h1 class="font-bold text-lg">아이디 찾기</h1>
+
+            <script>
+                let MemberFindLoginId__submitFormDone = false;
+
+                function MemberFindLoginId__submitForm(form) {
+                    if (MemberFindLoginId__submitFormDone) {
+                        return;
+                    }
+
+                    form.email.value = form.email.value.trim();
+
+                    if (form.email.value.length == 0) {
+                        warningModal("이메일을 입력해주세요.");
+                        form.email.focus();
+
+                        return;
+                    }
+
+                    form.submit();
+                    MemberFindLoginId__submitFormDone = true;
+                }
+            </script>
+
+
+            <form th:action="findUsername" method="POST" class="flex flex-col gap-3" onsubmit="MemberFindLoginId__submitForm(this); return false;">
+
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">이메일</span>
+                    </label>
+                    <input type="text" name="email"
+                           placeholder="이메일" class="input input-bordered" maxlength="50">
+                </div>
+
+                <div class="grid grid-cols-2 mt-2 gap-2 my-2">
+                    <input class="btn btn-primary" type="submit" value="아이디 확인">
+                    <a href="#" class="btn btn-secondary btn-outline">비밀번호 찾기</a>
+                </div>
+            </form>
+        </div>
+
+        </div>
+    </section>
+
+</main>
+</body>
+</html>
