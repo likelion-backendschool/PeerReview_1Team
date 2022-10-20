@@ -1,0 +1,21 @@
+<div class="container my-3">
+    <!-- 질문 -->
+    <h4 class="border-bottom py-2" th:text="${post.id}"></h4>
+    <h2 class="border-bottom py-2" th:text="${post.subject}"></h2>
+    <div class="card my-3">
+        <div class="card-body">
+            <div class="card-text" style="white-space: pre-line;" th:text="${post.content}"></div>
+            <div class="d-flex justify-content-end">
+                <div class="badge bg-light text-dark p-2 text-start">
+                    <div th:text="${#temporals.format(post.author.username, 'yyyy-MM-dd HH:mm')}"></div>
+                </div>
+                <div class="badge bg-light text-dark p-2 text-start">
+                    <div th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></div>
+                </div>
+                <div class="badge bg-light text-dark p-2 text-start">
+                    <div th:text="${#temporals.format(post.updatedDate, 'yyyy-MM-dd HH:mm')}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
