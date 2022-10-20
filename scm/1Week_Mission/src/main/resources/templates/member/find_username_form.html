@@ -1,0 +1,17 @@
+<html>
+<div class="container my-3">
+  <div class="my-3 border-bottom">
+    <div>
+      <h4>아이디 찾기</h4>
+    </div>
+  </div>
+  <form th:action="@{/member/findUsername}" th:object="${findUsernameDto}" method="post">
+    <div th:replace="global/form_errors :: formErrorsFragment"></div>
+    <div class="mb-3">
+      <label for="email" class="form-label">이메일</label>
+      <input type="email" th:field="*{email}" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">회원 조회</button>
+  </form>
+</div>
+</html>
