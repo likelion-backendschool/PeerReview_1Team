@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html layout:decorate="~{/layout.html}">
+
+<head>
+    <title>아이디 확인</title>
+</head>
+
+<body>
+<main layout:fragment="main">
+    <section class="section section-login flex-grow flex flex-col items-center justify-center">
+
+        <div class="max-w-md w-full px-2 pt-4">
+            <h1 class="font-bold text-lg">가입했던 아이디</h1>
+
+                <div>
+                    <p class="input input-bordered" style="align-items : center; display : flex;"
+                       th:if="${findMember != null}" th:text="|해당 메일의 아이디는 ${findMember.username} 입니다.|"></p>
+                    <p class="input input-bordered" style="align-items : center; display : flex;"
+                       th:if="${findMember == null}" th:text="|가입된 해당 메일 정보가 존재하지 않습니다.|"></p>
+                </div>
+
+                <div class="grid grid-cols-2 mt-2 gap-2 my-2">
+                    <a href="/member/login" class="btn btn-primary">로그인</a>
+                    <a href="/member/join" class="btn btn-secondary btn-outline">회원가입</a><!--미구현-->
+                </div>
+        </div>
+
+        </div>
+    </section>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html layout:decorate="~{/layout.html}">
+
+<head>
+    <title>회원 정보 수정</title>
+</head>
+
+<body>
+<main layout:fragment="main">
+    <section class="section section-login flex-grow flex flex-col items-center justify-center">
+
+        <div class="max-w-md w-full px-2 pt-4">
+            <h1 class="font-bold text-lg">회원 정보 수정</h1>
+
+            <script>
+                let MemberModify__submitDone = false;
+
+                function MemberModify__submit(form) {
+                    if (MemberModify__submitDone) {
+                        return;
+                    }
+
+                    form.email.value = form.email.value.trim();
+
+                    if (form.email.value.length == 0) {
+                        warningModal("변경하려면 메일을 입력해주세요.");
+                        form.email.focus();
+
+                        return;
+                    }
+
+                    form.submit();
+                    MemberModify__submitDone = true;
+                }
+            </script>
+
+
+            <form th:action method="POST" class="flex flex-col gap-3" onsubmit="MemberModify__submit(this); return false;">
+                <div class="form-control mt-3">
+                        <span th:text="|현재 계정 아이디 ___ ${member.username}|" >아이디</span>
+                </div>
+
+                <div class="form-control mt-2">
+                    <label class="label">
+                        <span class="label-text">메일</span>
+                    </label>
+                    <input autofocus type="text" name="email" placeholder="변경할 메일을 입력해주세요."
+                           th:value="${member.email}" class="input input-bordered mt-1" maxlength="50">
+                </div>
+
+                <div class="form-control mt-5">
+                    <label class="label">
+                        <span class="label-text">작가명</span>
+                    </label>
+                    <input autofocus type="text" name="nickname" placeholder="변경할 작가명을 입력해주세요."
+                           th:value="${member.nickname}" class="input input-bordered mt-1" maxlength="50">
+                    <span class="label-text mt-2">작가명을 입력하면 (작가)회원으로 등록됩니다.</span>
+                </div>
+
+                <div class="grid grid-cols-2 mt-2 gap-2">
+<!--                    <a href="/member/modify" class="btn btn-primary">변경하기</a>-->
+                    <input class="btn btn-primary" type="submit" value="수정하기">
+                    <a href="/" class="btn btn-secondary btn-outline">뒤로 가기</a>
+                </div>
+            </form>
+        </div>
+
+        </div>
+    </section>
+
+</main>
+</body>
+</html>
