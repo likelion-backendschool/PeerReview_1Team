@@ -50,7 +50,7 @@ public class MemberService {
         // 축하 이메일 발송
         String subject = "[wbook] 회원가입을 축하합니다.";
         String text = "%s 님의 회원가입을 축하합니다.".formatted(member.getUsername());
-        emailService.sendMessage(member.getEmail(), subject,text);
+        //emailService.sendMessage(member.getEmail(), subject,text);
         // 로그인
        return member;
     }
@@ -94,13 +94,9 @@ public class MemberService {
         }
         memberRepository.save(member);
     }
-    public boolean modifyPassword(Member member, String password,String oldPassword) {
-        if(!passwordEncoder.matches(oldPassword,member.getPassword())){
-            return false;
-        }
+    public void modifyPassword(Member member, String password) {
         member.setEncryptedPassword(passwordEncoder.encode(password));
         memberRepository.save(member);
-        return true;
     }
 
     public void setTempPassword(Member member) {
